@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crop Finder - Results</title>
+  <style>
+    /* General Body Styling */
+    .crop-image {
+        width: 200px; /* Adjust the size as needed */
+        height: auto; /* Maintain aspect ratio */
+        position: absolute; /* Position the image */
+        top: 120px; /* Distance from the top of the page */
+        right: 60px; /* Distance from the right edge of the page */
+        border: 3px solid #FFCC00; /* Tangerine yellow border */
+        border-radius: 8px; /* Rounded corners for a softer look */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    }
+    
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #FAF5E9; /* Ivory background */
+        color: #333; /* Neutral text color */
+    }
+    
+    /* Header Styling */
+    header {
+        background-color: #009B4D; /* Green */
+        color: #FAF5E9; /* Ivory text */
+        text-align: center;
+        padding: 20px;
+    }
+    
+    header h1 {
+        margin: 0;
+        font-size: 2em;
+    }
+    
+    header p {
+        margin: 5px 0 0;
+        font-size: 1.2em;
+    }
+    
+    /* Main Content Styling */
+    main {
+        max-width: 800px;
+        margin: 20px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-left: 8px solid #FFCC00; /* Tangerine yellow accent */
+    }
+    
+    /* Section Styling */
+    section {
+        margin-bottom: 20px;
+    }
+    
+    section h2 {
+        color: #009B4D; /* Green headings */
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #FFCC00; /* Tangerine yellow underline */
+        display: inline-block;
+    }
+    
+    section p {
+        line-height: 1.6;
+        font-size: 1em;
+    }
+    
+    /* Strong Text Styling */
+    p strong {
+        color: #009B4D; /* Green emphasis */
+    }
+    
+    /* Link Styling */
+    a {
+        color: #009B4D; /* Green links */
+        text-decoration: none;
+        font-weight: bold;
+    }
+    
+    a:hover {
+        color: #FFCC00; /* Tangerine yellow on hover */
+        text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+    <header>
+      <h1>{{name.upper()}}</h1>
+      <p>Discover everything about your crop!</p>
+    </header>
+    <main>
+      <img src = "#">
+    </main>
+    <main>
+      <section>
+        <h2>1. Basic Overview</h2>
+        <p>
+          <strong>Name:</strong> {{name}} <br>
+          <strong>Market Value:</strong> {{q2}} <br>
+          <strong>Description:</strong> {{q3}}
+        </p>
+      </section>
+  
+      <section>
+        <h2>2. Growth Requirements</h2>
+        <p>
+          <strong>Climate:</strong> {{q4}} <br>
+          <strong>Soil:</strong> {{q12}} <br>
+          <strong>Planting Season:</strong> {{q1}}<br>
+          <strong>Watering & Fertilizer Needs:</strong> {{q6}}<br>
+        </p>
+      </section>
+  
+      <section>
+        <h2>3. Cultivation Practices</h2>
+        <p>
+          <strong>Sowing Method:</strong>{{q7}} <br>
+          <strong>Pest and Disease Management:</strong> {{q8}} <br>
+          <strong>Time to Harvest:</strong> {{q9}} <br>
+        </p>
+      </section>
+  
+      <section>
+        <h2>4. Yield and Economics</h2>
+        <p>
+          <strong>Yield per Acre:</strong> {{q10}} <br>
+          <strong>Post-Harvest Management:</strong> {{q11}}
+        </p>
+      </section>
+  
+      <!-- <section>
+        <h2>5. Regional and Cultural Relevance</h2>
+        <p>
+          <strong>Popular Varieties:</strong> Region-specific crops and varieties. <br>
+          <strong>Traditional Applications:</strong> Cultural and traditional uses. <br>
+          <strong>Nutritional Significance:</strong> Key nutrients and dietary importance.
+        </p>
+      </section> -->
+    </main>
+  </header>
+
+  <main>
+    <div id="results-container"></div>
+    <a href="/">Back to Search</a>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

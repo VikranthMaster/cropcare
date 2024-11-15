@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+        body {
+            background: url("{{url_for('static', filename='background.png')}}");
+            background-size: 100%;
+            background-position: center;
+        }
+
+        .container
+        {
+            
+            width: 700px;
+            height: 400px;
+            margin: 200px auto;
+        }
+
+        .container
+        {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.18);
+            box-shadow: 0 8px 32px 0 rgba(255,255,255,0.37);
+        }
+
+
+        .container img
+        {
+            width: 500px;
+            height: 200px;
+            position: relative;
+            left: 100px;
+            top: 35px;
+        }
+
+        form
+        {
+            z-index: 1;
+            position: relative;
+            left: 85px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            align-items: center;
+            border: 1px solid #f3f6fa;
+            border-radius: 24px;
+            padding: 10px;
+            background-color: #f3f6fa;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input
+        {
+            flex-grow: 1;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            outline: none;
+            padding-bottom: 10px;
+            background-color:#f3f6fa;
+        }
+
+        .search-button {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .search-button:hover {
+            background-color: #357ae8;
+        }
+
+        ::placeholder
+        {
+            margin: auto;
+            margin-top: 20px;
+            font-size: 20px;
+            font-family: 'Montserrat', sans-serif;
+            color: #888888;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container glass">
+        <img src="{{url_for('static', filename='logobg1.png')}}">
+         <!-- <h1>CROP CARE</h1> -->
+        <div class="search-container">
+            <form method="POST" style="display: flex; width: 100%;">
+                <input type="text" class="search-input" name="query" id = "query" placeholder="Search for crop..." required>
+                <button type="submit" class="search-button">🔍</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

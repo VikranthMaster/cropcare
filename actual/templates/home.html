@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Care</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            background: url("{{url_for('static', filename = 'background.png')}}");
+
+        }
+
+        /* Full-page styling */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgba(250,245,233);
+            color: #202124; /* Dark text color */
+        }
+        
+
+        /* Logo styling */
+        .logo {
+            font-size: 48px;
+            font-weight: bold;
+            color: #4285f4;
+        }
+
+        /* Search bar container */
+        .search-container {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            align-items: center;
+            border: 1px solid #dfe1e5;
+            border-radius: 24px;
+            padding: 10px;
+            background-color: white;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Search input */
+        .search-input {
+            flex-grow: 1;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            outline: none;
+            padding-bottom: 10px;
+        }
+
+        /* Search button */
+        .search-button {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        /* Button hover effect */
+        .search-button:hover {
+            background-color: #357ae8;
+        }
+
+        /* Footer styling */
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            color: #70757a;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: #70757a;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+
+
+        .ai button
+        {
+            background-color: rgb(83, 184, 224);
+            font-weight: bold;
+            font-size: 14px;
+            color: white;
+            border: none;
+            padding-bottom: 11px;
+            padding-top: 11px;
+            padding-left: 16px;
+            padding-right: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: box-shadow 0.2s;
+            vertical-align: top;
+            position: relative;
+            top: 20px;
+        }
+
+        .ai button:hover
+        {
+            box-shadow: 5px 5px 5px rgba(0,0,0,0.15); /* right vertical blur */
+        }
+
+        img
+        {
+            height: 200px;
+            width: 400px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="logo">
+        <img src = "{{url_for('static',filename='logobg.png')}}">
+    </div>
+
+ 
+    <div class="search-container">
+        <form method="POST" style="display: flex; width: 100%;">
+            <input type="text" class="search-input" name="query" id = "query" placeholder="Search..." required>
+            <button type="submit" class="search-button">🔍</button>
+        </form>
+    </div>
+
+    <div class="ai">
+        <button type="submit" class="ai">AI Detect Disease</button>
+    </div>
+</body>
+</html>
+
