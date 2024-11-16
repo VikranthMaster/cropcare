@@ -6,7 +6,44 @@ import requests
 from bs4 import BeautifulSoup
 from werkzeug.utils import secure_filename
 from wtforms.validators import InputRequired
+import os
+import json
+from PIL import Image
+import numpy as np
+import tensorflow as tf
 
+working_dir = os.path.dirname(os.path.abspath(__file__))
+model_path = f"{working_dir}/plant_model.h5"
+# Load the pre-trained model
+model = tf.keras.models.load_model(model_path)
+
+# loading the class names
+class_indices = json.load(open(f"{working_dir}/class_indices.json"))
+
+
+
+# Function to Load and Preprocess the Image using Pillow
+def load_and_preprocess_image(image_path, target_size=(224, 224)):
+    # Load the image
+    img = Image.open(image_path)
+    # Resize the image
+    img = img.resize(target_size)
+    # Convert the image to a numpy array
+    img_array = np.array(img)
+    # Add batch dimension
+    img_array = np.expand_dims(img_array, axis=0)
+    # Scale the image values to [0, 1]
+    img_array = img_array.astype('float32') / 255.
+    return img_array
+
+
+# Function to Predict the Class of an Image
+def predict_image_class(model, image_path, class_indices):
+    preprocessed_img = load_and_preprocess_image(image_path)
+    predictions = model.predict(preprocessed_img)
+    predicted_class_index = np.argmax(predictions, axis=1)[0]
+    predicted_class_name = class_indices[str(predicted_class_index)]
+    return predicted_class_name
 
 
 def search(q):
@@ -39,7 +76,7 @@ def home():
     if request.method == "POST":
         query = request.form.get('query')
         q1 = f"what is the best season to grow {query}"
-        q2 = f"What is the market value of {query} in telangana for this month"
+        q2 = f"What is the market value of {query}"
         q3 = f"give a brief description of {query}"
         q4 = f"What is the ideal temperature, rainfall and humidity to grow {query}"
         q5 = f"What is the best season to grow {query}"
@@ -61,30 +98,16 @@ def home():
 
 @app.route('/ai', methods=['GET', 'POST'])
 def index():
-    # if request.method == 'POST':
-    #     if 'file' not in request.files:
-    #         flash('No file part')
-    #         return redirect(request.url)
-    #     file = request.files['file']
-    #     if file.filename == '':
-    #         flash('No selected file')
-    #         return redirect(request.url)
-    #     if file and allowed_file(file.filename):
-    #         filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-    #         file.save(filepath)
-    #         flash('File uploaded successfully!')
-    #         return render_template('ai.html', uploaded_file=file.filename)
-    # return render_template('ai.html')
     form = UploadFileForm()
     if form.validate_on_submit():
         file = form.file.data
         file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'], secure_filename(file.filename)))
-        return "File has been uploaded"
+        print("File uploaded")
+        uploaded_image = f"static/uploads/{os.listdir('static/uploads')[0]}"
+        image = Image.open(uploaded_image)
+        prediction = predict_image_class(model, uploaded_image, class_indices)
+        return f"<h1>{prediction}</h1>"
     return render_template("ai.html", form=form)
-
-@app.route('/ai/uploads/<filename>')
-def uploaded_file(filename):
-    return redirect(url_for('static', filename=f'uploads/{filename}'))
 
 if __name__ == '__main__':
     app.run(debug=True)
